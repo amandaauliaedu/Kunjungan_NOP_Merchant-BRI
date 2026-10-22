@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html { scroll-behavior: smooth; }
+body {
+  color: #142B4A; font-family: 'Space Grotesk', system-ui, sans-serif; min-height: 100vh;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(8,87,195,.16), transparent 38%),
+    radial-gradient(circle at 100% 40%, rgba(139,111,230,.10), transparent 35%),
+    radial-gradient(circle at 100% 100%, rgba(56,189,248,.20), transparent 40%),
+    linear-gradient(135deg, #F4F8FF 0%, #FFFFFF 55%, #EAF2FF 100%);
+  background-attachment: fixed;
+}
+.glass-card { background: rgba(255,255,255,.72); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.65); border-radius: 20px; box-shadow: 0 8px 32px rgba(8,87,195,.08); }
+.eyebrow { @apply font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-brand; }
+.btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-colors min-h-[40px] disabled:cursor-not-allowed disabled:opacity-50; }
+.btn-primary { @apply btn bg-brand text-white shadow-md shadow-brand/30 hover:bg-brand-hover; }
+.btn-secondary { @apply btn border border-brand/15 bg-white/80 text-ink hover:bg-brand-light hover:text-brand; }
+.input { @apply w-full rounded-xl border border-brand/20 bg-white/80 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand/40; }
+@media (prefers-reduced-motion: reduce) { * { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
