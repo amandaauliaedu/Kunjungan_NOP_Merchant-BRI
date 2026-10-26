@@ -30,3 +30,17 @@ export function badgeTone(v) {
   if (/berhasil|sukses|normal|baik|\bok\b|success/.test(s)) return 'green';
   return 'blue';
 }
+
+// Opsi gabungan "PN - Nama Petugas" dari master Database1 dan data kunjungan (unik per PN).
+export function petugasOptions(data, database) {
+  const m = new Map();
+  const add = (pn, nama) => {
+    const k = norm(pn);
+    if (!k) return;
+    const n = norm(nama);
+    if (!m.has(k) || (!m.get(k) && n)) m.set(k, n);
+  };
+  database.forEach((d) => add(d.pn, d.petugas));
+  data.forEach((r) => add(r['PN Petugas IT'], r['Nama Pet. IT']));
+  return [...m.entries()].map(([value, nama]) => ({ value, label: nama ? `${value} - ${nama}` : value })).sort((a, b) => a.label.localeCompare(b.label, 'id'));
+}

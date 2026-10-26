@@ -21,8 +21,8 @@ export default function Home() {
   return (<>
     <section className="grid items-center gap-8 py-4 md:grid-cols-[1.2fr_1fr] md:py-10">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5 }}>
-        <p className="eyebrow flex items-center gap-2"><CircleDot className="h-3.5 w-3.5" />Network Operation Problem · NOP</p>
-        <h1 className="mt-5 text-5xl font-bold leading-[1.05] tracking-tight text-brand-navy md:text-7xl">KUNJUNGAN NOP<br /><span className="text-brand">MERCHANT</span></h1>
+        <p className="eyebrow flex items-center gap-2"><CircleDot className="h-3.5 w-3.5" />Operation, Service, and E-Channel (OSE)</p>
+        <h1 className="mt-5 text-5xl font-bold leading-[1.05] tracking-tight text-brand-navy md:text-7xl">BRI REGION 12<br /><span className="text-brand">SURABAYA</span></h1>
         <div className="mt-4 h-0.5 w-52 bg-brand" />
         <p className="mt-6 max-w-lg text-lg text-slate-500">Monitoring Kunjungan dan Penanganan Problem NOP Merchant oleh petugas IT BRI Region 12 Surabaya.</p>
         <div className="mt-8 flex flex-wrap gap-3">
@@ -43,9 +43,9 @@ export default function Home() {
       <p className="eyebrow">Ringkasan Cepat</p>
       <h2 className="mb-4 mt-1 text-2xl font-bold">Status Monitoring Terkini</h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Total Live Response" value={data.length} desc="semua data kunjungan" icon={Activity} loading={first} delay={0} />
-        <StatCard label="Jumlah Branch Office" value={masterBranch.length} suffix={`/ ${visitedBranch} dikunjungi`} desc="master Database1" icon={Building2} loading={first} delay={.07} />
-        <StatCard label="Jumlah Petugas IT" value={masterPetugas.length} suffix={`/ ${activeOfficers} aktif`} desc="master Database1" icon={Users} loading={first} delay={.14} />
+        <StatCard label="Total Live Response" value={data.length} icon={Activity} loading={first} delay={0} />
+        <StatCard label="Jumlah Branch Office" value={masterBranch.length} suffix={`/ ${visitedBranch} dikunjungi`} icon={Building2} loading={first} delay={.07} />
+        <StatCard label="Jumlah Petugas IT" value={masterPetugas.length} suffix={`/ ${activeOfficers} aktif`} icon={Users} loading={first} delay={.14} />
         <StatCard label="Status Sistem" value={status} tone="status" desc={`Sinkron: ${formatSync(updatedAt)}`} icon={ShieldCheck} delay={.21} />
       </div>
     </section>

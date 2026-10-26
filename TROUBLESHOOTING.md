@@ -22,3 +22,8 @@ Periksa ejaan nama tab sheet (peka huruf besar/kecil, tanpa spasi tambahan).
 
 ## Perubahan Code.gs tidak berpengaruh
 Deployment lama tetap menjalankan versi lama: Manage deployments → Edit → New version → Deploy.
+
+## URL /exec ternyata membuka form (bukan JSON)
+Proyek Apps Script yang sama dipakai untuk form Report Kunjungan. Pakai `apps-script/Code.gs` gabungan:
+tanpa parameter tampil form, dengan `?action=health|live-response|dashboard` mengembalikan JSON.
+Jangan memakai `appsscript.json` yang membatasi `oauthScopes` (form butuh akses Drive dan tulis spreadsheet).

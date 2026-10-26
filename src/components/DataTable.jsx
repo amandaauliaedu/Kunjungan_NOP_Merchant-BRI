@@ -11,7 +11,7 @@ const SEARCH_KEYS = ['Nama Merchant', 'TID Merchant', 'Branch Office', 'PN Petug
 const BADGE = ['Kondisi Fisik Mesin EDC', 'Hasil Transaksi'];
 const LONG = ['Problem NOP', 'Tindak Lanjut NOP'];
 
-export default function DataTable({ rows, columns, onDetail, onPhoto, exportName }) {
+export default function DataTable({ rows, columns, onDetail, onPhoto, exportName, onFilteredChange }) {
   const [q, setQ] = useState(''); const [dir, setDir] = useState('desc'); const [size, setSize] = useState(10); const [page, setPage] = useState(1);
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
@@ -20,6 +20,7 @@ export default function DataTable({ rows, columns, onDetail, onPhoto, exportName
     return [...f].sort((a, b) => m * ((visitDate(a).localeCompare(visitDate(b))) || (tsOf(a) - tsOf(b))));
   }, [rows, q, dir]);
   useEffect(() => setPage(1), [q, size, rows]);
+  useEffect(() => { if (onFilteredChange) onFilteredChange(filtered); }, [filtered]); // eslint-disable-line react-hooks/exhaustive-deps
   const pages = Math.max(1, Math.ceil(filtered.length / size));
   const view = filtered.slice((page - 1) * size, page * size);
   const cell = (r, c) => {
@@ -35,7 +36,7 @@ export default function DataTable({ rows, columns, onDetail, onPhoto, exportName
   return (
     <div>
       <div className="flex flex-wrap items-center gap-2 p-4">
-        <div className="relative min-w-[220px] flex-1"><Search className="absolute left-3 top-2.5 h-4 w-4 text-brand" /><input className="input pl-9" placeholder="Cari merchant, TID, branch, PN, atau nama petugas" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Cari kunjungan" /></div>
+        <div className="relative min-w-[220px] flex-1"><Search className="absolute left-3 top-2.5 h-4 w-4 text-brand" /><input className="input !pl-9" placeholder="Cari merchant, TID, branch, PN, atau nama petugas" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Cari kunjungan" /></div>
         <button className="btn-secondary" onClick={() => setDir(dir === 'desc' ? 'asc' : 'desc')}><ArrowUpDown className="h-4 w-4" />{dir === 'desc' ? 'Terbaru' : 'Terlama'}</button>
         <select className="input !w-auto" value={size} onChange={(e) => setSize(Number(e.target.value))} aria-label="Jumlah baris">{[10, 25, 50, 100].map((n) => <option key={n} value={n}>{n} baris</option>)}</select>
         {exportName && <button className="btn-primary" disabled={!filtered.length} onClick={() => exportVisits(filtered, exportName)} title={`Unduh ${filtered.length} baris sesuai pencarian/filter saat ini`}><FileSpreadsheet className="h-4 w-4" />Unduh Excel</button>}

@@ -30,3 +30,8 @@ Logo BRI ada di `public/assets/bri-logo.png` (ganti file ini untuk mengubah logo
 Jika file hilang, aplikasi menampilkan monogram cadangan.
 
 Jika muncul error koneksi, lihat `TROUBLESHOOTING.md`.
+
+## Filter
+Live Response dan Dashboard memakai filter yang sama: tanggal mulai/akhir, Branch Office, dan
+PN - Nama Petugas IT (satu dropdown). Di Live Response, kartu Branch Office / Petugas IT menghitung
+yang benar-benar mengisi (sesuai filter); klik kartu untuk daftar, klik salah satu untuk melihat isiannya di tabel.
